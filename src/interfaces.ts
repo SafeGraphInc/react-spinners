@@ -31,3 +31,7 @@ export interface LoaderHeightWidthRadiusProps extends LoaderHeightWidthProps {
   margin?: LengthType;
   radius?: LengthType;
 }
+
+export interface VariableRadiusLoaderProps extends LoaderHeightWidthRadiusProps {
+  loaderRadius?: LengthType;
+}

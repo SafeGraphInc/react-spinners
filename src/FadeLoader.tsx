@@ -3,21 +3,22 @@ import * as React from "react";
 import { keyframes, css, jsx, SerializedStyles } from "@emotion/react";
 
 import { heightWidthRadiusDefaults, cssValue, parseLengthAndUnit } from "./helpers";
-import { LoaderHeightWidthRadiusProps } from "./interfaces";
+import { VariableRadiusLoaderProps } from "./interfaces";
 
 const fade = keyframes`
   50% {opacity: 0.3}
   100% {opacity: 1}
 `;
 
-class Loader extends React.PureComponent<Required<LoaderHeightWidthRadiusProps>> {
+class Loader extends React.PureComponent<Required<VariableRadiusLoaderProps>> {
   public static defaultProps = heightWidthRadiusDefaults(15, 5, 2);
 
   public radius = (): number => {
-    const { margin } = this.props;
-    const { value } = parseLengthAndUnit(margin);
+    const { margin, loaderRadius } = this.props;
+    const { value: marginValue } = parseLengthAndUnit(margin);
+    const { value: loaderRadiusValue } = parseLengthAndUnit(loaderRadius);
 
-    return value + 18;
+    return marginValue + loaderRadiusValue || 18;
   };
 
   public quarter = (): number => {
